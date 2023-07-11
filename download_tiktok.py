@@ -83,17 +83,17 @@ def main(page: Page):
 
     #
     def on_button(e):
-        if url_tiktok_textField.value() != "":
-            url_delete.disabled = False
-            url_delete.update()
-            url_paste.disabled = True
+        str_input = str(url_tiktok_textField)
+        if str_input == "":
+            url_paste.visible = True
             url_paste.update()
-        else:
-            url_paste.disabled = False
-            url_paste.update()
-            url_delete.disabled = True
+            url_delete.visible = False
             url_delete.update()
-
+        if str_input != "":
+            url_delete.visible = True
+            url_delete.update()
+            url_paste.visible = False
+            url_paste.update()
         return on_button
 
     #
@@ -159,17 +159,6 @@ def main(page: Page):
         cursor_color='black',
         width=386,
         height=50,
-        # content_padding=10,
-        # focused_border_width=2,
-        # label="Dán liên kết Tiktok vào đây",
-        # border_color="black",
-        # # border="none",
-        # border_radius=10,
-        # # hint_text=("Dán liên kết Tiktok vào đây"),
-        # color='black',
-        # width=540,
-        # height=50,
-        # bgcolor='white',
         col={"sm": 8, "md": 12, "lg": 10, "xl": 12},
     )
 
@@ -202,25 +191,7 @@ def main(page: Page):
         padding=0,
         content=TextButton("Download", on_click=download_video, height=50, width=70),
     )
-    # url_download = ElevatedButton("Download", on_click=download_video, height=50)
 
-    # _item_row = ResponsiveRow(
-    #     # alignment="center",
-    #     vertical_alignment="center",
-    #     controls=[
-    #         Container(
-    #             col={"xs": 8, "sm": 6, "md": 8, "xl": 12},
-    #             content=url_tiktok_textField,
-    #         ),
-    #     ],
-    # )
-
-    # url_responsive_paste = ElevatedButton("Paste", on_click=paste_click, height=50),
-
-    # url_button = Row(
-    #     alignment="center",
-    #     vertical_alignment="center",
-    # )
     # 7/6/23
     _item = [url_paste, url_delete]
     _item_row = ResponsiveRow(alignment="center")
@@ -234,7 +205,6 @@ def main(page: Page):
         col={"sm": 10, "md": 10, "lg": 6, "xl": 5},
         content=Row([
             url_tiktok_textField,
-            # on_button,
             url_paste,
             url_delete,
             # if url_tiktok_textField !="":
@@ -261,54 +231,18 @@ def main(page: Page):
         padding=20,
         content=_item_row
     )
-    #
-    # for item in _item:
-    #     _container_input = Container(
-    #         # alignment=alignment.center,
-    #         bgcolor="white",
-    #         padding=2,
-    #         border_radius=10,
-    #         col={"sm": 10, "md": 8, "lg": 5, "xl": 5},
-    #         content=Container(
-    #             content= item,
-    #         )
-    #
-    #     )
-    #     _item_row.controls.append(_container_input)
+
 
     _item_row.controls.append(_container_input)
     _item_row.controls.append(_container_download)
 
-    # if url_tiktok_textField.value == "":
-    #     url_button.controls.append(url_paste)
 
-    # url_button.controls.append(url_delete)
-
-    # url_button.controls.append(url_delete)
-    #
-    # if url_tiktok_textField.value != "":
-    #     url_button.controls.append(url_delete)
-    # url_button.controls.append(url_paste.visible(False))
-
-    # url_button.controls.append(url_download)
-
-    # url_container = Container(
-    #     margin=20,
-    #     width=790,
-    #     height=55,
-    #     padding=2,
-    #     bgcolor="white",
-    #     border_radius=10,
-    #     # content=url_tiktok_textField,
-    #    content=url_button
-    # )
 
     # main column
     _main_col = Column(horizontal_alignment="center", scroll="auto")
     _main_col.controls.append(_nav)
     _main_col.controls.append(Container(padding=padding.only(top=75)))
     _main_col.controls.append(_title)
-    # _main_col.controls.append(url_container)
     _main_col.controls.append(_container_item)
 
     # bg container
