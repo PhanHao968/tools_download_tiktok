@@ -31,7 +31,6 @@ from flet import (
     TextField,
     colors,
     ElevatedButton, TextButton, InputBorder, TextStyle
-
 )
 
 
@@ -83,17 +82,19 @@ def main(page: Page):
 
     #
     def on_button(e):
-        str_input = str(url_tiktok_textField)
+        str_input = str(url_tiktok_textField.value)
+
         if str_input == "":
             url_paste.visible = True
             url_paste.update()
             url_delete.visible = False
             url_delete.update()
-        if str_input != "":
-            url_delete.visible = True
-            url_delete.update()
+        else:
             url_paste.visible = False
             url_paste.update()
+            url_delete.visible = True
+            url_delete.update()
+
         return on_button
 
     #
@@ -110,12 +111,12 @@ def main(page: Page):
                                    height=60,
                                    bgcolor="white",
                                    content=
-                                       Text("TD",
-                                            size=30,
-                                            weight="w900",
-                                            color="black",
-                                            text_align="center",
-                                            ),
+                                   Text("TD",
+                                        size=30,
+                                        weight="w900",
+                                        color="black",
+                                        text_align="center",
+                                        ),
 
                                ),
 
@@ -207,13 +208,8 @@ def main(page: Page):
             url_tiktok_textField,
             url_paste,
             url_delete,
-            # if url_tiktok_textField !="":
-            #     url_delete.disabled=True
-            # else:
-            #     url_paste.disabled=True
-
         ], alignment="spaceBetween"),
-        on_click=on_button,
+        on_hover=on_button,
     )
 
     #
@@ -232,11 +228,8 @@ def main(page: Page):
         content=_item_row
     )
 
-
     _item_row.controls.append(_container_input)
     _item_row.controls.append(_container_download)
-
-
 
     # main column
     _main_col = Column(horizontal_alignment="center", scroll="auto")
