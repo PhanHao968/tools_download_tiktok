@@ -1,4 +1,4 @@
-app = "tools_download_tiktok"
+app = "tools-download-tiktok"
 
 kill_signal = "SIGINT"
 kill_timeout = 5

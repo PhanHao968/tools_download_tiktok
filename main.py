@@ -35,14 +35,14 @@ from flet import (
 
 
 def main(page: Page):
-    def page_resize(e):
-        pw.value = f"{page.width} px"
-        pw.update()
-
-    page.on_resize = page_resize
-
-    pw = Text(bottom=50, right=50, style="displaySmall")
-    page.overlay.append(pw)
+    # def page_resize(e):
+    #     pw.value = f"{page.width} px"
+    #     pw.update()
+    #
+    # page.on_resize = page_resize
+    #
+    # pw = Text(bottom=50, right=50, style="displaySmall")
+    # page.overlay.append(pw)
 
     #
     def download_video(e):
@@ -252,7 +252,7 @@ def main(page: Page):
     )
 
     page.add(_backround)
-    page_resize(None)
+    # page_resize(None)
 
 
 if __name__ == "__main__":
